@@ -71,7 +71,8 @@ if (NODE_ENV === "development") {
 }
 
 // Routes
-app.get("/", (req, res) => res.send("Welcome to the  API"));
+app.get("/", (req, res) => res.send("Welcome to the url-shortener API"));
+app.use("/api/auth",require("./src/routes/auth/index"));
 
 
 //  404 Fallback
