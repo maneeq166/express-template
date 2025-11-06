@@ -1,6 +1,7 @@
-const { handleRegistration } = require("../../controllers/auth");
+const { handleRegistration, handleLogin, handleUserDetails } = require("../../controllers/auth");
+const { validateRegistration } = require("../../validator/auth");
 const router = require("express").Router();
-
+const {validateRequest} = require("../../middleware/validateRequest/index")
 /**
  * @swagger
  * /api/auth/register:
@@ -67,6 +68,9 @@ const router = require("express").Router();
  *                   example: Email already exists
  */
 
-router.route("/register").post(handleRegistration);
+router.route("/register").post(validateRegistration,validateRequest,handleRegistration);
+
+router.route("/login").post(handleLogin);
+route.route("/").get(handleUserDetails);
 
 module.exports = router;
