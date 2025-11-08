@@ -71,6 +71,6 @@ const {validateRequest} = require("../../middleware/validateRequest/index")
 router.route("/register").post(validateRegistration,validateRequest,handleRegistration);
 
 router.route("/login").post(handleLogin);
-route.route("/").get(handleUserDetails);
+router.route("/").get(handleUserDetails);
 
 module.exports = router;

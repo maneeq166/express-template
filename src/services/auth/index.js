@@ -33,8 +33,8 @@ exports.createUser = async (username,email,password) =>{
     }
 }
 
-exports.loginUser = async (email,password,role) =>{
-    if(!email||!password ||!role){
+exports.loginUser = async (email,password) =>{
+    if( !email || !password ){
         return {
             data:null,
             statusCode:400,
@@ -62,7 +62,7 @@ exports.loginUser = async (email,password,role) =>{
         }
     }
 
-    let token = jwt.sign({id:user._id,username:user.username,email:user.email},secrets.JWT_SECRET)
+    let token = jwt.sign({id:user._id,username:user.username,email:user.email,role:user.role},secrets.JWT_SECRET)
 
     return {
         data:token,
