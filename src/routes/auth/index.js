@@ -1,7 +1,8 @@
 const { handleRegistration, handleLogin, handleUserDetails } = require("../../controllers/auth");
 const { validateRegistration } = require("../../validator/auth");
 const router = require("express").Router();
-const {validateRequest} = require("../../middleware/validateRequest/index")
+const {validateRequest} = require("../../middleware/validateRequest/index");
+const { isUserOrAdmin } = require("../../middleware/authMiddleware");
 /**
  * @swagger
  * /api/auth/register:
@@ -71,6 +72,6 @@ const {validateRequest} = require("../../middleware/validateRequest/index")
 router.route("/register").post(validateRegistration,validateRequest,handleRegistration);
 
 router.route("/login").post(handleLogin);
-router.route("/").get(handleUserDetails);
+router.route("/").get(isUserOrAdmin,handleUserDetails);
 
 module.exports = router;
